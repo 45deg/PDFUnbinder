@@ -1,7 +1,5 @@
-package com.github._45deg.pdfsplitter;
+package com.github._45deg.pdfunbinder;
 
-import com.itextpdf.kernel.pdf.*;
-import com.itextpdf.kernel.pdf.navigation.PdfDestination;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

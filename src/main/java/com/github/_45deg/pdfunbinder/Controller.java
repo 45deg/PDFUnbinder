@@ -1,4 +1,4 @@
-package com.github._45deg.pdfsplitter;
+package com.github._45deg.pdfunbinder;
 
 public class Controller {
 }
