@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github._45deg.pdfunbinder.MainController"
+            fx:id="root">
     <top>
         <Pane>
             <BorderPane.margin>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </BorderPane.margin>
-           <children>
-               <Label text="Opening File: ..." />
-           </children>
+            <Label text="Opening File: " fx:id="openinglabel"/>
         </Pane>
     </top>
     <center>
-        <TreeView BorderPane.alignment="CENTER" />
+        <TreeView BorderPane.alignment="CENTER" fx:id="treeview" />
     </center>
     <bottom>
         <BorderPane BorderPane.alignment="CENTER">
@@ -26,10 +26,11 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </BorderPane.margin>
             <left>
-                <Label text="? chapters selected." BorderPane.alignment="CENTER_LEFT" />
+                <Label text="0 chapters selected." BorderPane.alignment="CENTER_LEFT"
+                       fx:id="selectinglabel"/>
             </left>
             <right>
-                <Button text="Export" />
+                <Button text="Export" onAction="#handleSubmitAction" />
             </right>
         </BorderPane>
     </bottom>
