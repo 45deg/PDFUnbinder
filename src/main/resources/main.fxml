@@ -1,8 +1,36 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="com.github._45deg.pdfsplitter.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <Pane>
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </BorderPane.margin>
+           <children>
+               <Label text="Opening File: ..." />
+           </children>
+        </Pane>
+    </top>
+    <center>
+        <TreeView BorderPane.alignment="CENTER" />
+    </center>
+    <bottom>
+        <BorderPane BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </BorderPane.margin>
+            <left>
+                <Label text="? chapters selected." BorderPane.alignment="CENTER_LEFT" />
+            </left>
+            <right>
+                <Button text="Export" />
+            </right>
+        </BorderPane>
+    </bottom>
+</BorderPane>
