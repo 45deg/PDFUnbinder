@@ -10,6 +10,12 @@ public class OutlineData {
         this.startPage = startPage;
     }
 
+    public OutlineData(String title, Integer startPage, Integer endPage) {
+        this.title = title;
+        this.startPage = startPage;
+        this.endPage = endPage;
+    }
+
     public String getTitle() {
         return title;
     }

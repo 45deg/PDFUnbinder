@@ -5,6 +5,7 @@ import com.itextpdf.kernel.pdf.PdfReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeView;
@@ -54,9 +55,12 @@ public class MainController {
         boolean success = false;
         if (db.hasFiles()) {
             try {
-                PdfDocument pdfDocument = new PdfDocument(new PdfReader(db.getFiles().get(0)));
+                File in = db.getFiles().get(0);
+                PdfDocument pdfDocument = new PdfDocument(new PdfReader(in));
+                OutlineData rootNode = new OutlineData(in.getName(), 0,
+                        pdfDocument.getPageNumber(pdfDocument.getLastPage()));
                 CheckBoxTreeItem<OutlineData> rootItem =
-                        new CheckBoxTreeItem<OutlineData>(new OutlineData("root", 0));
+                        new CheckBoxTreeItem<OutlineData>(rootNode);
                 rootItem.setExpanded(true);
                 rootItem.setIndependent(true);
                 treeview.setCellFactory(CheckBoxTreeCell.<OutlineData>forTreeView());
@@ -65,7 +69,10 @@ public class MainController {
                 treeview.setRoot(rootItem);
                 treeview.setShowRoot(true);
             } catch (IOException e) {
-                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Load Error: " + e.toString());
+                alert.showAndWait();
             }
             success = true;
         }
