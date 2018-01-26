@@ -25,20 +25,22 @@ public class OutlineMapper {
     }
 
     private void walkOutlines(CheckBoxTreeItem<OutlineData> target, PdfOutline outline) {
-        if (outline.getDestination() != null) {
-            String title = outline.getTitle();
-            int pageNumber = pdfDoc.getPageNumber((PdfDictionary) outline.getDestination().getDestinationPage(names));
-            // System.out.println(title + " p" + pageNumber + ":" + outline.getDestination().getPdfObject().getType());
-            OutlineData outlineObj = new OutlineData(title, pageNumber);
-            CheckBoxTreeItem<OutlineData> item = new CheckBoxTreeItem<OutlineData>(outlineObj);
-            item.setIndependent(true);
+        if(outline != null) {
+            if (outline.getDestination() != null) {
+                String title = outline.getTitle();
+                int pageNumber = pdfDoc.getPageNumber((PdfDictionary) outline.getDestination().getDestinationPage(names));
+                // System.out.println(title + " p" + pageNumber + ":" + outline.getDestination().getPdfObject().getType());
+                OutlineData outlineObj = new OutlineData(title, pageNumber);
+                CheckBoxTreeItem<OutlineData> item = new CheckBoxTreeItem<OutlineData>(outlineObj);
+                item.setIndependent(true);
 
-            target.getChildren().add(item);
-            target = item;
-        }
+                target.getChildren().add(item);
+                target = item;
+            }
 
-        for (PdfOutline child : outline.getAllChildren()) {
-            walkOutlines(target, child);
+            for (PdfOutline child : outline.getAllChildren()) {
+                walkOutlines(target, child);
+            }
         }
     }
 
