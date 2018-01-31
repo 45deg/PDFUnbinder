@@ -1,4 +1,4 @@
-package com.github._45deg.pdfunbinder;
+package com.github._45deg.pdfunbinder.outline;
 
 import java.util.ArrayList;
 import java.util.List;

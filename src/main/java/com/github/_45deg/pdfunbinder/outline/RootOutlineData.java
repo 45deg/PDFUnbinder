@@ -1,4 +1,4 @@
-package com.github._45deg.pdfunbinder;
+package com.github._45deg.pdfunbinder.outline;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 

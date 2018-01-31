@@ -1,16 +1,17 @@
 package com.github._45deg.pdfunbinder;
 
+import com.github._45deg.pdfunbinder.outline.OutlineBuilder;
+import com.github._45deg.pdfunbinder.outline.OutlineMapper;
+import com.github._45deg.pdfunbinder.outline.RootOutlineData;
+
 import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfOutline;
 import com.itextpdf.kernel.pdf.PdfReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBoxTreeItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeView;
-import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;

@@ -1,11 +1,7 @@
-package com.github._45deg.pdfunbinder;
+package com.github._45deg.pdfunbinder.outline;
 
 import com.itextpdf.kernel.pdf.*;
-import javafx.scene.control.CheckBoxTreeItem;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class OutlineBuilder {

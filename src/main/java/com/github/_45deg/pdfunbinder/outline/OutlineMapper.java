@@ -1,4 +1,4 @@
-package com.github._45deg.pdfunbinder;
+package com.github._45deg.pdfunbinder.outline;
 
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTreeCell;
@@ -6,7 +6,7 @@ import javafx.scene.control.cell.CheckBoxTreeCell;
 public class OutlineMapper {
     private OutlineData root;
 
-    OutlineMapper(RootOutlineData root) {
+    public OutlineMapper(RootOutlineData root) {
         this.root = root;
     }
 
