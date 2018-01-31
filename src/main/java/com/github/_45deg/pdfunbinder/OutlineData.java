@@ -1,47 +1,58 @@
 package com.github._45deg.pdfunbinder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OutlineData {
     private String title;
     private Integer startPage;
-    private Integer endPage;
+
+    private OutlineData parent;
+    private List<OutlineData> children;
+    private OutlineData next;
 
     public OutlineData(String title, Integer startPage) {
         this.title = title;
         this.startPage = startPage;
     }
 
-    public OutlineData(String title, Integer startPage, Integer endPage) {
-        this.title = title;
-        this.startPage = startPage;
-        this.endPage = endPage;
-    }
-
     public String getTitle() {
         return title;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public Integer getStartPage() {
         return startPage;
     }
 
-    public void setStartPage(Integer startPage) {
-        this.startPage = startPage;
+    public Integer getEndPage(boolean includeOffset) {
+        if(next == null) {
+            return parent.getEndPage(includeOffset);
+        }
+        return next.startPage - (includeOffset ? 0 : 1);
     }
 
-    public Integer getEndPage() {
-        return endPage;
+    public List<OutlineData> getChildren() {
+        return children;
     }
 
-    public void setEndPage(Integer endPage) {
-        this.endPage = endPage;
+    public void addChildren(OutlineData child) {
+        if(children == null) {
+            children = new ArrayList<OutlineData>();
+        }
+        child.setParent(this);
+        children.add(child);
     }
 
-    @Override
+    public void setNext(OutlineData next) {
+        this.next = next;
+    }
+
+    public void setParent(OutlineData parent) {
+        this.parent = parent;
+    }
+
+    @Override @Deprecated
     public String toString() {
-        return this.getTitle() + "(" + this.getStartPage() + ")";
+        return this.getTitle() + " (" + this.getStartPage() + "-" + this.getEndPage(false) + ")";
     }
+
 }

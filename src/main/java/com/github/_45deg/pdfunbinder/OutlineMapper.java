@@ -1,47 +1,35 @@
 package com.github._45deg.pdfunbinder;
 
-import com.itextpdf.kernel.pdf.*;
-import javafx.scene.control.CheckBoxTreeItem;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTreeCell;
 
 public class OutlineMapper {
-    private PdfDocument pdfDoc;
-    private Map<String, PdfObject> names;
+    private OutlineData root;
 
-    private OutlineData previousObject;
-
-    public OutlineMapper(PdfDocument pdfDoc) {
-        this.pdfDoc = pdfDoc;
+    OutlineMapper(RootOutlineData root) {
+        this.root = root;
     }
 
-    public void mapTo(CheckBoxTreeItem<OutlineData> rootItem) {
-        PdfOutline pdfOutlines = pdfDoc.getOutlines(false);
-        names = pdfDoc.getCatalog().getNameTree(PdfName.Dests).getNames();
-        walkOutlines(rootItem, pdfOutlines);
+    public void mapTo(TreeView treeview) {
+        CheckBoxTreeItem<OutlineData> rootItem =
+                new CheckBoxTreeItem<OutlineData>(root);
+        treeview.setCellFactory(CheckBoxTreeCell.<OutlineData>forTreeView());
+        treeview.setRoot(rootItem);
+        walk(rootItem, root);
+        rootItem.setExpanded(true);
+        rootItem.setIndependent(true);
+        treeview.setShowRoot(false);
     }
 
-    private void walkOutlines(CheckBoxTreeItem<OutlineData> target, PdfOutline outline) {
-        if(outline != null) {
-            if (outline.getDestination() != null) {
-                String title = outline.getTitle();
-                int pageNumber = pdfDoc.getPageNumber((PdfDictionary) outline.getDestination().getDestinationPage(names));
-                // System.out.println(title + " p" + pageNumber + ":" + outline.getDestination().getPdfObject().getType());
-                OutlineData outlineObj = new OutlineData(title, pageNumber);
-                CheckBoxTreeItem<OutlineData> item = new CheckBoxTreeItem<OutlineData>(outlineObj);
-                item.setIndependent(true);
+    private void walk(CheckBoxTreeItem<OutlineData> target, OutlineData outline){
+        CheckBoxTreeItem<OutlineData> item = new CheckBoxTreeItem<OutlineData>(outline);
+        item.setIndependent(true);
+        target.getChildren().add(item);
 
-                target.getChildren().add(item);
-                target = item;
-            }
-
-            for (PdfOutline child : outline.getAllChildren()) {
-                walkOutlines(target, child);
+        if(outline.getChildren() != null) {
+            for (OutlineData child : outline.getChildren()) {
+                walk(item, child);
             }
         }
     }
-
 }

@@ -1,6 +1,7 @@
 package com.github._45deg.pdfunbinder;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfOutline;
 import com.itextpdf.kernel.pdf.PdfReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -57,17 +58,9 @@ public class MainController {
             try {
                 File in = db.getFiles().get(0);
                 PdfDocument pdfDocument = new PdfDocument(new PdfReader(in));
-                OutlineData rootNode = new OutlineData(in.getName(), 0,
-                        pdfDocument.getPageNumber(pdfDocument.getLastPage()));
-                CheckBoxTreeItem<OutlineData> rootItem =
-                        new CheckBoxTreeItem<OutlineData>(rootNode);
-                rootItem.setExpanded(true);
-                rootItem.setIndependent(true);
-                treeview.setCellFactory(CheckBoxTreeCell.<OutlineData>forTreeView());
-                (new OutlineMapper(pdfDocument)).mapTo(rootItem);
-
-                treeview.setRoot(rootItem);
-                treeview.setShowRoot(true);
+                RootOutlineData rootItem = RootOutlineData.createRootOutline(in.getName(), pdfDocument);
+                (new OutlineBuilder(pdfDocument)).buildOutline(rootItem);
+                (new OutlineMapper(rootItem)).mapTo(treeview);
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -76,6 +69,7 @@ public class MainController {
             }
             success = true;
         }
+
         event.setDropCompleted(success);
         event.consume();
     }
