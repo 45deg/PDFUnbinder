@@ -4,6 +4,10 @@ import com.itextpdf.kernel.pdf.*;
 
 import java.util.Map;
 
+/*
+ * Builds an outline tree from PDFDocument
+ * */
+
 public class OutlineBuilder {
     private PdfDocument pdfDoc;
     private Map<String, PdfObject> names;
@@ -35,11 +39,9 @@ public class OutlineBuilder {
 
             // Set next field
             OutlineData prev = null;
-            if(target.getChildren() != null) {
-                for (OutlineData child : target.getChildren()) {
-                    if (prev != null) prev.setNext(child);
-                    prev = child;
-                }
+            for (OutlineData child : target.getChildren()) {
+                if (prev != null) prev.setNext(child);
+                prev = child;
             }
         }
     }

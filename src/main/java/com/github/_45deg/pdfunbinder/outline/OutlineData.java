@@ -3,6 +3,10 @@ package com.github._45deg.pdfunbinder.outline;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Outline Model
+ * */
+
 public class OutlineData {
     private String title;
     private Integer startPage;
@@ -31,6 +35,9 @@ public class OutlineData {
     }
 
     public List<OutlineData> getChildren() {
+        if(children == null) {
+            return new ArrayList<OutlineData>();
+        }
         return children;
     }
 

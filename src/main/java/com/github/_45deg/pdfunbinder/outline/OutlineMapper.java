@@ -3,6 +3,10 @@ package com.github._45deg.pdfunbinder.outline;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTreeCell;
 
+/*
+   Mapping OutlineData to TreeView
+ */
+
 public class OutlineMapper {
     private OutlineData root;
 
@@ -16,10 +20,8 @@ public class OutlineMapper {
         treeview.setCellFactory(CheckBoxTreeCell.<OutlineData>forTreeView());
         treeview.setRoot(rootItem);
 
-        if(root.getChildren() != null) {
-            for (OutlineData child : root.getChildren()) {
-                walk(rootItem, child);
-            }
+        for (OutlineData child : root.getChildren()) {
+            walk(rootItem, child);
         }
 
         rootItem.setExpanded(true);
@@ -31,10 +33,8 @@ public class OutlineMapper {
         item.setIndependent(true);
         target.getChildren().add(item);
 
-        if(outline.getChildren() != null) {
-            for (OutlineData child : outline.getChildren()) {
-                walk(item, child);
-            }
+        for (OutlineData child : outline.getChildren()) {
+            walk(item, child);
         }
     }
 }

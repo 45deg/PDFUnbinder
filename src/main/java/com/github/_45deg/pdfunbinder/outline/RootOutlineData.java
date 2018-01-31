@@ -2,6 +2,10 @@ package com.github._45deg.pdfunbinder.outline;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 
+/*
+* Outline Model for Root Node
+* */
+
 public class RootOutlineData extends OutlineData {
     private Integer endPage;
 
