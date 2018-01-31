@@ -15,10 +15,15 @@ public class OutlineMapper {
                 new CheckBoxTreeItem<OutlineData>(root);
         treeview.setCellFactory(CheckBoxTreeCell.<OutlineData>forTreeView());
         treeview.setRoot(rootItem);
-        walk(rootItem, root);
+
+        if(root.getChildren() != null) {
+            for (OutlineData child : root.getChildren()) {
+                walk(rootItem, child);
+            }
+        }
+
         rootItem.setExpanded(true);
         rootItem.setIndependent(true);
-        treeview.setShowRoot(false);
     }
 
     private void walk(CheckBoxTreeItem<OutlineData> target, OutlineData outline){
