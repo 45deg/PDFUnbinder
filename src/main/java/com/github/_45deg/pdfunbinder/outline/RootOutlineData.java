@@ -19,7 +19,7 @@ public class RootOutlineData extends OutlineData {
     }
 
     public static RootOutlineData createRootOutline(String title, PdfDocument pdfDocument){
-        return new RootOutlineData(title, 0,
+        return new RootOutlineData(title, 1,
                 pdfDocument.getPageNumber(pdfDocument.getLastPage()));
     }
 }
