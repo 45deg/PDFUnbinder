@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 public class PageExtractor {
     private PdfDocument source;
 
-    PageExtractor(PdfDocument source){
+    public PageExtractor(PdfDocument source){
         this.source = source;
     }
 
