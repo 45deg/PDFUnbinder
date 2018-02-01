@@ -9,7 +9,7 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 public class RootOutlineData extends OutlineData {
     private Integer endPage;
 
-    private RootOutlineData(String title, Integer startPage, Integer endPage) {
+    RootOutlineData(String title, Integer startPage, Integer endPage) {
         super(title, startPage);
         this.endPage = endPage;
     }
