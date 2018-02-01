@@ -9,24 +9,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-class OutlineBuilderTest {
+class OutlineBuilderTest extends PdfTestBase {
 
-    private PdfDocument pdfDocument;
     private OutlineBuilder outlineBuilder;
     private RootOutlineData rootItem;
 
     @BeforeEach
     void before() throws IOException {
-        File in = new File(getClass().getClassLoader().getResource("sample.pdf").getFile());
-        pdfDocument = new PdfDocument(new PdfReader(in));
-        rootItem = RootOutlineData.createRootOutline(in.getName(), pdfDocument);
+        super.before();
+        rootItem = RootOutlineData.createRootOutline(inFile.getName(), pdfDocument);
         outlineBuilder = new OutlineBuilder(pdfDocument);
-    }
-
-    @AfterEach
-    void after(){
-        if(pdfDocument != null)
-            pdfDocument.close();
     }
 
     @Test
@@ -36,16 +28,16 @@ class OutlineBuilderTest {
         List<OutlineData> c0 = rootItem.getChildren();
 
         // title
-        assertEquals(c0.get(1).getTitle(),"Header 1");
-        assertEquals(c0.get(1).getChildren().get(0).getTitle(),"Subheader 1");
-        assertEquals(c0.get(1).getChildren().get(0).getChildren().get(0).getTitle(),"SubSubHeader 1");
+        assertEquals("Header 1", c0.get(1).getTitle());
+        assertEquals("Subheader 1", c0.get(1).getChildren().get(0).getTitle());
+        assertEquals("SubSubHeader 1", c0.get(1).getChildren().get(0).getChildren().get(0).getTitle());
 
         // pages
-        assertEquals(c0.get(1).getStartPage(), new Integer(1));
-        assertEquals(c0.get(2).getStartPage(), new Integer(5));
-        assertEquals(c0.get(3).getStartPage(), new Integer(8));
+        assertEquals(new Integer(1), c0.get(1).getStartPage());
+        assertEquals(new Integer(5), c0.get(2).getStartPage());
+        assertEquals(new Integer(8), c0.get(3).getStartPage();
 
         // Unicode
-        assertEquals(c0.get(4).getTitle(), "見出し 1");
+        assertEquals("見出し 1", c0.get(4).getTitle());
     }
 }
