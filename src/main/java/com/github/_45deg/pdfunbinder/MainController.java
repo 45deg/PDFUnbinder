@@ -87,6 +87,7 @@ public class MainController {
             final File in = db.getFiles().get(0);
             Platform.runLater(() -> {
                 try {
+                    if(pdfDocument != null) pdfDocument.close();
                     pdfDocument = new PdfDocument(new PdfReader(in));
                     RootOutlineData rootItem = RootOutlineData.createRootOutline(in.getName(), pdfDocument);
                     (new OutlineBuilder(pdfDocument)).buildOutline(rootItem);
