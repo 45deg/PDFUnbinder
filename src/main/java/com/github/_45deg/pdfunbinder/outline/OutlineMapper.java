@@ -26,6 +26,7 @@ public class OutlineMapper {
 
         rootItem.setExpanded(true);
         rootItem.setIndependent(true);
+        treeview.setShowRoot(false);
     }
 
     private void walk(CheckBoxTreeItem<OutlineData> target, OutlineData outline){
