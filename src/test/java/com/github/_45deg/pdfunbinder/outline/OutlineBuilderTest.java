@@ -1,11 +1,9 @@
 package com.github._45deg.pdfunbinder.outline;
 
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfReader;
+import com.github._45deg.pdfunbinder.common.PdfTestBase;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -15,7 +13,7 @@ class OutlineBuilderTest extends PdfTestBase {
     private RootOutlineData rootItem;
 
     @BeforeEach
-    void before() throws IOException {
+    protected void before() throws IOException {
         super.before();
         rootItem = RootOutlineData.createRootOutline(inFile.getName(), pdfDocument);
         outlineBuilder = new OutlineBuilder(pdfDocument);

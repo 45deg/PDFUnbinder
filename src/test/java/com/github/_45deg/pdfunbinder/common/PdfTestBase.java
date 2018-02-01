@@ -1,4 +1,4 @@
-package com.github._45deg.pdfunbinder.outline;
+package com.github._45deg.pdfunbinder.common;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfReader;
@@ -10,17 +10,17 @@ import java.io.IOException;
 
 public abstract class PdfTestBase {
 
-    PdfDocument pdfDocument;
-    File inFile;
+    protected PdfDocument pdfDocument;
+    protected File inFile;
 
     @BeforeEach
-    void before() throws IOException {
+    protected void before() throws IOException {
         inFile = new File(getClass().getClassLoader().getResource("sample.pdf").getFile());
         pdfDocument = new PdfDocument(new PdfReader(inFile));
     }
 
     @AfterEach
-    void after(){
+    protected void after(){
         if(pdfDocument != null)
             pdfDocument.close();
     }

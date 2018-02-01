@@ -1,5 +1,6 @@
 package com.github._45deg.pdfunbinder.outline;
 
+import com.github._45deg.pdfunbinder.common.PdfTestBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RootOutlineDataTest extends PdfTestBase {
 
     @BeforeEach
-    void before() throws IOException {
+    protected void before() throws IOException {
         super.before();
     }
 
