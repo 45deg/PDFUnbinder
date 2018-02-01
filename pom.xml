@@ -7,6 +7,8 @@
     <groupId>com.github.45deg</groupId>
     <artifactId>PDFUnbinder</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
     <build>
         <plugins>
             <plugin>
@@ -15,6 +17,46 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>1.1.0-M2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.junit.jupiter</groupId>
+                        <artifactId>junit-jupiter-engine</artifactId>
+                        <version>5.0.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.github._45deg.pdfunbinder.Main</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
@@ -60,6 +102,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    
 </project>
