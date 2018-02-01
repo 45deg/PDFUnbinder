@@ -35,7 +35,7 @@ class OutlineBuilderTest extends PdfTestBase {
         // pages
         assertEquals(new Integer(1), c0.get(1).getStartPage());
         assertEquals(new Integer(5), c0.get(2).getStartPage());
-        assertEquals(new Integer(8), c0.get(3).getStartPage();
+        assertEquals(new Integer(8), c0.get(3).getStartPage());
 
         // Unicode
         assertEquals("見出し 1", c0.get(4).getTitle());
