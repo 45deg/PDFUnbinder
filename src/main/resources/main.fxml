@@ -30,7 +30,7 @@
                        fx:id="selectinglabel"/>
             </left>
             <right>
-                <Button text="Export" onAction="#handleSubmitAction" />
+                <Button text="Export" fx:id="submitbutton" disable="true" />
             </right>
         </BorderPane>
     </bottom>
